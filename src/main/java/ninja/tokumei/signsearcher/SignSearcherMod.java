@@ -17,7 +17,7 @@ public class SignSearcherMod implements ClientModInitializer {
 				"key.signsearcher.search",
 				InputUtil.Type.KEYSYM,
 				GLFW.GLFW_KEY_SEMICOLON,
-				"category.signsearcher.general"
+				"category.signsearcher"
 		));
 		ClientTickEvents.END_CLIENT_TICK.register(client -> {
 			if (searchBinding.wasPressed()) {
