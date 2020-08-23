@@ -1,29 +1,28 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "signsearcher",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Sign Searcher",
+  "description": "Search the text on nearby signs",
   "authors": [
-    "Me!"
+    "Adam Gausmann <agausmann@fastmail.com>"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "sources": "https://github.com/agausmann/sign-searcher"
   },
 
-  "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "license": "MIT",
+  "icon": "assets/signsearcher/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "ninja.tokumei.signsearcher.SignSearcherMod"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "signsearcher.mixins.json"
   ],
 
   "depends": {
@@ -32,6 +31,5 @@
     "minecraft": "1.16.x"
   },
   "suggests": {
-    "flamingo": "*"
   }
 }
