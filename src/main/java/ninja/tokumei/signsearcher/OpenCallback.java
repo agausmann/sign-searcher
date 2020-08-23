@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 public class OpenCallback implements UseItemCallback {
     @Override
     public TypedActionResult<ItemStack> interact(PlayerEntity playerEntity, World world, Hand hand) {
-        if (playerEntity.getStackInHand(hand).getItem() == Items.STICK && world.isClient()) {
+        if (playerEntity.getStackInHand(hand).getItem() == Items.STICK) {
             System.out.println("Open Menu");
             MinecraftClient.getInstance().openScreen(new SearchScreen(new SearchGui()));
             return TypedActionResult.fail(ItemStack.EMPTY);
