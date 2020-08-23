@@ -1,21 +1,28 @@
 package ninja.tokumei.signsearcher;
 
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.event.player.UseItemCallback;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.TypedActionResult;
+import net.minecraft.client.options.KeyBinding;
+import net.minecraft.client.util.InputUtil;
+import org.lwjgl.glfw.GLFW;
 
 public class SignSearcherMod implements ClientModInitializer {
+	private KeyBinding searchBinding;
+
 	@Override
 	public void onInitializeClient() {
-		// This code runs as soon as Minecraft is in a mod-load-ready state.
-		// However, some things (like resources) may still be uninitialized.
-		// Proceed with mild caution.
-
-		System.out.println("Hello Fabric world!");
-
-		UseItemCallback.EVENT.register(new OpenCallback());
+		searchBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding(
+				"key.signsearcher.search",
+				InputUtil.Type.KEYSYM,
+				GLFW.GLFW_KEY_SEMICOLON,
+				"category.signsearcher.general"
+		));
+		ClientTickEvents.END_CLIENT_TICK.register(client -> {
+			if (searchBinding.wasPressed()) {
+				MinecraftClient.getInstance().openScreen(new SearchScreen(new SearchGui()));
+			}
+		});
 	}
 }
