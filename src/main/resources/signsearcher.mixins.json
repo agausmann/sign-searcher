@@ -6,6 +6,7 @@
   "mixins": [
   ],
   "client": [
+    "SignBlockEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1

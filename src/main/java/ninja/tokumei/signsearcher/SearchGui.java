@@ -10,7 +10,7 @@ import net.minecraft.block.entity.SignBlockEntity;
 import java.util.ArrayList;
 
 public class SearchGui extends LightweightGuiDescription {
-    ArrayList<SignBlockEntity> resultsList;
+    public ArrayList<SignBlockEntity> resultsList;
 
     public SearchGui() {
         resultsList = new ArrayList<>();
@@ -19,11 +19,12 @@ public class SearchGui extends LightweightGuiDescription {
         setRootPanel(root);
 
         WTextField searchBar = new WTextField();
-        root.add(searchBar);
+        root.add(searchBar, 11 * 18, 1 * 18);
 
-        WListPanel<SignBlockEntity, ResultPanel> searchResults = new WListPanel<>(
-                resultsList, ResultPanel::new, (sign, panel) -> panel.setSign(sign));
-        root.add(searchResults);
+        WListPanel<SignBlockEntity, WSearchResult> searchResults = new WListPanel<>(
+                resultsList, WSearchResult::new, (sign, panel) -> panel.setSign(sign));
+        searchResults.setListItemHeight(3 * 18);
+        root.add(searchResults, 11 * 18, 12 * 18);
 
         root.validate(this);
     }
