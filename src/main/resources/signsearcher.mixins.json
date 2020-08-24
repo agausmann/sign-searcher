@@ -4,10 +4,11 @@
   "package": "ninja.tokumei.signsearcher.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-  ],
-  "client": [
+    "SignBlockEntityInject",
     "SignBlockEntityMixin"
   ],
+  "client": [],
+  "server": [],
   "injectors": {
     "defaultRequire": 1
   }

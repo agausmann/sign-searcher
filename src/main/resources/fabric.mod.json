@@ -17,7 +17,7 @@
 
   "environment": "*",
   "entrypoints": {
-    "client": [
+    "main": [
       "ninja.tokumei.signsearcher.SignSearcherMod"
     ]
   },
