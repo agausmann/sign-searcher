@@ -3,11 +3,12 @@
   "minVersion": "0.8",
   "package": "ninja.tokumei.signsearcher.mixin",
   "compatibilityLevel": "JAVA_8",
-  "mixins": [
-  ],
+  "mixins": [],
   "client": [
+    "SignBlockEntityInject",
     "SignBlockEntityMixin"
   ],
+  "server": [],
   "injectors": {
     "defaultRequire": 1
   }

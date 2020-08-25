@@ -17,9 +17,11 @@
 
   "environment": "*",
   "entrypoints": {
+    "main": [],
     "client": [
       "ninja.tokumei.signsearcher.SignSearcherMod"
-    ]
+    ],
+    "server": []
   },
   "mixins": [
     "signsearcher.mixins.json"

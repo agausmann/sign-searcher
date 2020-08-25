@@ -9,8 +9,6 @@ import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import ninja.tokumei.signsearcher.mixin.SignBlockEntityMixin;
 
-import java.util.ArrayList;
-
 public class WSearchResult extends WGridPanel {
     static final int NUM_LINES = 4;
 
