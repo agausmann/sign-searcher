@@ -40,7 +40,7 @@ public class WSearchResult extends WGridPanel {
     }
 
     public void setSign(SignBlockEntity sign) {
-        Text[] srcText = ((SignBlockEntityMixin) sign).getText();
+        Text[] srcText = ((SignBlockEntityMixin) (Object) sign).getText();
 
         for (int i = 0; i < NUM_LINES; i++) {
             if (i < srcText.length) {

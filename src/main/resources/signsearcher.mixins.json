@@ -5,9 +5,7 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [],
   "client": [
-    "SignBlockEntityInject",
     "SignBlockEntityMixin",
-    "WorldRendererInject",
     "WorldRendererMixin"
   ],
   "server": [],
