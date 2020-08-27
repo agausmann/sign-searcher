@@ -5,6 +5,7 @@ import net.minecraft.block.entity.SignBlockEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.text.Text;
 import ninja.tokumei.signsearcher.event.SignUpdateCallback;
+import ninja.tokumei.signsearcher.ext.SignBlockEntityExt;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 import org.spongepowered.asm.mixin.injection.At;
@@ -12,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(SignBlockEntity.class)
-public abstract class SignBlockEntityMixin {
+public abstract class SignBlockEntityMixin implements SignBlockEntityExt {
     @Accessor
     public abstract Text[] getText();
 

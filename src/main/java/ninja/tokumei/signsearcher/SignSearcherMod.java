@@ -9,6 +9,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.options.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import ninja.tokumei.signsearcher.event.SignUpdateCallback;
+import ninja.tokumei.signsearcher.ext.BlockEntityExt;
 import org.lwjgl.glfw.GLFW;
 
 import java.util.ArrayList;
@@ -44,6 +45,7 @@ public class SignSearcherMod implements ClientModInitializer {
 		});
 		SignUpdateCallback.EVENT.register((blockEntity) -> {
 			this.dirty |= this.signCache.add(blockEntity);
+			((BlockEntityExt) blockEntity).setGlowing(true);
 		});
 		ClientBlockEntityEvents.BLOCK_ENTITY_UNLOAD.register((blockEntity, world) -> {
 			if (blockEntity instanceof SignBlockEntity) {

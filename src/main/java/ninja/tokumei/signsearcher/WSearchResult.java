@@ -4,9 +4,11 @@ import io.github.cottonmc.cotton.gui.client.BackgroundPainter;
 import io.github.cottonmc.cotton.gui.widget.WGridPanel;
 import io.github.cottonmc.cotton.gui.widget.WText;
 import io.github.cottonmc.cotton.gui.widget.data.HorizontalAlignment;
+import net.minecraft.block.SignBlock;
 import net.minecraft.block.entity.SignBlockEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
+import ninja.tokumei.signsearcher.ext.SignBlockEntityExt;
 import ninja.tokumei.signsearcher.mixin.SignBlockEntityMixin;
 
 public class WSearchResult extends WGridPanel {
@@ -40,7 +42,7 @@ public class WSearchResult extends WGridPanel {
     }
 
     public void setSign(SignBlockEntity sign) {
-        Text[] srcText = ((SignBlockEntityMixin) (Object) sign).getText();
+        Text[] srcText = ((SignBlockEntityExt) sign).getText();
 
         for (int i = 0; i < NUM_LINES; i++) {
             if (i < srcText.length) {

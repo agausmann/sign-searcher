@@ -7,6 +7,7 @@ import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.WorldRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRenderDispatcher;
 import net.minecraft.client.util.math.MatrixStack;
+import ninja.tokumei.signsearcher.ext.BlockEntityExt;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 import org.spongepowered.asm.mixin.injection.At;
@@ -46,9 +47,18 @@ public abstract class WorldRendererMixin {
             ordinal = 0
         )
     )
-    public void renderWithOutline1(BlockEntityRenderDispatcher dispatcher, BlockEntity blockEntity, float tickDelta, MatrixStack matrices, VertexConsumerProvider originalVcp) {
+    public void renderWithOutline1(BlockEntityRenderDispatcher dispatcher, BlockEntity blockEntity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vcp) {        if (((BlockEntityExt) blockEntity).isGlowing()) {
         OutlineVertexConsumerProvider outlineVcp = this.getBufferBuilders().getOutlineVertexConsumers();
-        dispatcher.render(blockEntity, tickDelta, matrices, outlineVcp);
+        int color = ((BlockEntityExt) blockEntity).getGlowColor();
+        outlineVcp.setColor(
+            (color >> 16) & 0xff,
+            (color >> 8) & 0xff,
+            color & 0xff,
+            0xff
+        );
+        vcp = outlineVcp;
+    }
+        dispatcher.render(blockEntity, tickDelta, matrices, vcp);
     }
 
     @Redirect(
@@ -62,8 +72,18 @@ public abstract class WorldRendererMixin {
             ordinal = 1
         )
     )
-    public void renderWithOutline2(BlockEntityRenderDispatcher dispatcher, BlockEntity blockEntity, float tickDelta, MatrixStack matrices, VertexConsumerProvider originalVcp) {
-        OutlineVertexConsumerProvider outlineVcp = this.getBufferBuilders().getOutlineVertexConsumers();
-        dispatcher.render(blockEntity, tickDelta, matrices, outlineVcp);
+    public void renderWithOutline2(BlockEntityRenderDispatcher dispatcher, BlockEntity blockEntity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vcp) {
+        if (((BlockEntityExt) blockEntity).isGlowing()) {
+            OutlineVertexConsumerProvider outlineVcp = this.getBufferBuilders().getOutlineVertexConsumers();
+            int color = ((BlockEntityExt) blockEntity).getGlowColor();
+            outlineVcp.setColor(
+                (color >> 16) & 0xff,
+                (color >> 8) & 0xff,
+                color & 0xff,
+                0xff
+            );
+            vcp = outlineVcp;
+        }
+        dispatcher.render(blockEntity, tickDelta, matrices, vcp);
     }
 }
