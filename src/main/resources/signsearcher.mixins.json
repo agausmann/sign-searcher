@@ -6,7 +6,9 @@
   "mixins": [],
   "client": [
     "SignBlockEntityInject",
-    "SignBlockEntityMixin"
+    "SignBlockEntityMixin",
+    "WorldRendererInject",
+    "WorldRendererMixin"
   ],
   "server": [],
   "injectors": {
