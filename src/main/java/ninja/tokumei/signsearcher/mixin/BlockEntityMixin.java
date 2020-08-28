@@ -3,10 +3,13 @@ package ninja.tokumei.signsearcher.mixin;
 import net.minecraft.block.entity.BlockEntity;
 import ninja.tokumei.signsearcher.ext.BlockEntityExt;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 
 @Mixin(BlockEntity.class)
 public abstract class BlockEntityMixin implements BlockEntityExt {
+    @Unique
     private boolean glowing = false;
+    @Unique
     private int glowColor = 0xffffff;
 
     public boolean isGlowing() {
