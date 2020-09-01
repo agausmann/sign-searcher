@@ -4,7 +4,9 @@
   "package": "ninja.tokumei.signsearcher.mixin.sodium",
   "compatibilityLevel": "JAVA_8",
   "mixins": [],
-  "client": [],
+  "client": [
+    "SodiumWorldRendererMixin"
+  ],
   "server": [],
   "injectors": {
     "defaultRequire": 1

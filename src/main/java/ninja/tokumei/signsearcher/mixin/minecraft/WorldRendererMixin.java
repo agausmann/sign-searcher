@@ -47,17 +47,18 @@ public abstract class WorldRendererMixin {
             ordinal = 0
         )
     )
-    public void renderWithOutline1(BlockEntityRenderDispatcher dispatcher, BlockEntity blockEntity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vcp) {        if (((BlockEntityExt) blockEntity).isGlowing()) {
-        OutlineVertexConsumerProvider outlineVcp = this.getBufferBuilders().getOutlineVertexConsumers();
-        int color = ((BlockEntityExt) blockEntity).getGlowColor();
-        outlineVcp.setColor(
-            (color >> 16) & 0xff,
-            (color >> 8) & 0xff,
-            color & 0xff,
-            0xff
-        );
-        vcp = outlineVcp;
-    }
+    public void renderWithOutline1(BlockEntityRenderDispatcher dispatcher, BlockEntity blockEntity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vcp) {
+        if (((BlockEntityExt) blockEntity).isGlowing()) {
+            OutlineVertexConsumerProvider outlineVcp = this.getBufferBuilders().getOutlineVertexConsumers();
+            int color = ((BlockEntityExt) blockEntity).getGlowColor();
+            outlineVcp.setColor(
+                (color >> 16) & 0xff,
+                (color >> 8) & 0xff,
+                color & 0xff,
+                0xff
+            );
+            vcp = outlineVcp;
+        }
         dispatcher.render(blockEntity, tickDelta, matrices, vcp);
     }
 
