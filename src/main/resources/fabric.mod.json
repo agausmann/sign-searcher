@@ -27,7 +27,8 @@
     ]
   },
   "mixins": [
-    "signsearcher.mixins.json"
+    "signsearcher.mixins-minecraft.json",
+    "signsearcher.mixins-sodium.json"
   ],
 
   "depends": {

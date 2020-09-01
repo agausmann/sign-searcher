@@ -1,4 +1,4 @@
-package ninja.tokumei.signsearcher.mixin;
+package ninja.tokumei.signsearcher.mixin.minecraft;
 
 import net.minecraft.block.entity.BlockEntity;
 import ninja.tokumei.signsearcher.ext.BlockEntityExt;

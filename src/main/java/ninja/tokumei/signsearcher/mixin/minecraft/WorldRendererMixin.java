@@ -1,4 +1,4 @@
-package ninja.tokumei.signsearcher.mixin;
+package ninja.tokumei.signsearcher.mixin.minecraft;
 
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.render.BufferBuilderStorage;
