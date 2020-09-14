@@ -13,6 +13,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+import java.util.SortedSet;
+
 @Mixin(SodiumWorldRenderer.class)
 public abstract class SodiumWorldRendererMixin {
     @Redirect(
@@ -27,7 +29,7 @@ public abstract class SodiumWorldRendererMixin {
             ordinal = 0
         )
     )
-    public void renderWithOutline(BlockEntityRenderDispatcher dispatcher, BlockEntity blockEntity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vcp, MatrixStack _matrices, BufferBuilderStorage bufferBuilders, Object _blockBreakingProgressions, Camera _camera, float _tickDelta) {
+    public void renderWithOutline(BlockEntityRenderDispatcher dispatcher, BlockEntity blockEntity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vcp, MatrixStack _matrices, BufferBuilderStorage bufferBuilders, Long2ObjectMap<SortedSet<BlockBreakingInfo>> _blockBreakingProgressions, Camera _camera, float _tickDelta) {
         if (((BlockEntityExt) blockEntity).isGlowing()) {
             OutlineVertexConsumerProvider outlineVcp = bufferBuilders.getOutlineVertexConsumers();
             int color = ((BlockEntityExt) blockEntity).getGlowColor();
