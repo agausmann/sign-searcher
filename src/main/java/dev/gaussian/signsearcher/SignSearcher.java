@@ -1,44 +1,34 @@
-package ninja.tokumei.signsearcher;
+package dev.gaussian.signsearcher;
 
-import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
-import io.github.cottonmc.clientcommands.ArgumentBuilders;
-import io.github.cottonmc.clientcommands.ClientCommandPlugin;
-import io.github.cottonmc.clientcommands.CottonClientCommandSource;
+import dev.gaussian.signsearcher.event.SignUpdateCallback;
+import dev.gaussian.signsearcher.ext.BlockEntityExt;
+import dev.gaussian.signsearcher.ext.SignBlockEntityExt;
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.command.v1.ClientCommandManager;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientBlockEntityEvents;
 import net.minecraft.block.entity.SignBlockEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
-import ninja.tokumei.signsearcher.event.SignUpdateCallback;
-import ninja.tokumei.signsearcher.ext.BlockEntityExt;
-import ninja.tokumei.signsearcher.ext.SignBlockEntityExt;
 
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.PrimitiveIterator;
 
-public class SignSearcher implements ClientModInitializer, ClientCommandPlugin {
+import static net.fabricmc.fabric.api.client.command.v1.ClientCommandManager.argument;
+import static net.fabricmc.fabric.api.client.command.v1.ClientCommandManager.literal;
+
+public class SignSearcher implements ClientModInitializer {
 	private static final HashSet<SignBlockEntity> signs = new HashSet<>();
 	private static String searchText = "";
 
 	@Override
 	public void onInitializeClient() {
 		System.out.println("Client init");
-		SignUpdateCallback.EVENT.register(SignSearcher::addSign);
-		ClientBlockEntityEvents.BLOCK_ENTITY_UNLOAD.register((blockEntity, world) -> {
-			if (blockEntity instanceof SignBlockEntity) {
-				removeSign((SignBlockEntity) blockEntity);
-			}
-		});
-	}
-
-	@Override
-	public void registerCommands(CommandDispatcher<CottonClientCommandSource> commandDispatcher) {
-		commandDispatcher.register(
-			ArgumentBuilders.literal("signsearch")
+		ClientCommandManager.DISPATCHER.register(
+			literal("signsearch")
 				.then(
-					ArgumentBuilders.argument("query", StringArgumentType.greedyString())
+					argument("query", StringArgumentType.greedyString())
 						.executes(context -> {
 							String searchText = StringArgumentType.getString(context, "query");
 							setSearchText(searchText);
@@ -52,6 +42,13 @@ public class SignSearcher implements ClientModInitializer, ClientCommandPlugin {
 					return 1;
 				})
 		);
+
+		SignUpdateCallback.EVENT.register(SignSearcher::addSign);
+		ClientBlockEntityEvents.BLOCK_ENTITY_UNLOAD.register((blockEntity, world) -> {
+			if (blockEntity instanceof SignBlockEntity) {
+				removeSign((SignBlockEntity) blockEntity);
+			}
+		});
 	}
 
 	public static void updateSign(SignBlockEntity sign) {
@@ -63,7 +60,7 @@ public class SignSearcher implements ClientModInitializer, ClientCommandPlugin {
 			return false;
 		}
 		StringBuilder signText = new StringBuilder();
-		for (Text line : ((SignBlockEntityExt) sign).getText()) {
+		for (Text line : ((SignBlockEntityExt) sign).getTexts()) {
 			line.visit((part) -> {
 				signText.append(part);
 				return Optional.empty();

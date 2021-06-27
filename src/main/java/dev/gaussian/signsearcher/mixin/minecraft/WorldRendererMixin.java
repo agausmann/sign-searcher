@@ -1,5 +1,6 @@
-package ninja.tokumei.signsearcher.mixin.minecraft;
+package dev.gaussian.signsearcher.mixin.minecraft;
 
+import dev.gaussian.signsearcher.ext.BlockEntityExt;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.render.BufferBuilderStorage;
 import net.minecraft.client.render.OutlineVertexConsumerProvider;
@@ -7,7 +8,6 @@ import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.WorldRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRenderDispatcher;
 import net.minecraft.client.util.math.MatrixStack;
-import ninja.tokumei.signsearcher.ext.BlockEntityExt;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 import org.spongepowered.asm.mixin.injection.At;

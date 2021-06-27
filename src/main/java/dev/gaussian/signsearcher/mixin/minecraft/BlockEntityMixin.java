@@ -1,7 +1,7 @@
-package ninja.tokumei.signsearcher.mixin.minecraft;
+package dev.gaussian.signsearcher.mixin.minecraft;
 
+import dev.gaussian.signsearcher.ext.BlockEntityExt;
 import net.minecraft.block.entity.BlockEntity;
-import ninja.tokumei.signsearcher.ext.BlockEntityExt;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 

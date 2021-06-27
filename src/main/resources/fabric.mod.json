@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "signsearcher",
+  "id": "sign-searcher",
   "version": "${version}",
 
   "name": "Sign Searcher",
@@ -19,23 +19,22 @@
   "entrypoints": {
     "main": [],
     "client": [
-      "ninja.tokumei.signsearcher.SignSearcher"
+      "dev.gaussian.signsearcher.SignSearcher"
     ],
     "server": [],
     "cotton-client-commands": [
-      "ninja.tokumei.signsearcher.SignSearcher"
+      "dev.gaussian.signsearcher.SignSearcher"
     ]
   },
   "mixins": [
-    "signsearcher.mixins-minecraft.json",
-    "signsearcher.mixins-sodium.json"
+    "signsearcher.minecraft.mixins.json",
+    "signsearcher.sodium.mixins.json"
   ],
 
   "depends": {
-    "fabricloader": ">=0.7.4",
+    "fabricloader": ">=0.11.6",
     "fabric": "*",
-    "minecraft": "1.16.x",
-    "cotton-client-commands": "^1.0.0"
+    "minecraft": "1.17"
   },
   "suggests": {
   },

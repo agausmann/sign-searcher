@@ -1,11 +1,11 @@
-package ninja.tokumei.signsearcher.mixin.minecraft;
+package dev.gaussian.signsearcher.mixin.minecraft;
 
+import dev.gaussian.signsearcher.event.SignUpdateCallback;
+import dev.gaussian.signsearcher.ext.SignBlockEntityExt;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.SignBlockEntity;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.Text;
-import ninja.tokumei.signsearcher.event.SignUpdateCallback;
-import ninja.tokumei.signsearcher.ext.SignBlockEntityExt;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 import org.spongepowered.asm.mixin.injection.At;
@@ -15,11 +15,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(SignBlockEntity.class)
 public abstract class SignBlockEntityMixin implements SignBlockEntityExt {
     @Accessor
-    public abstract Text[] getText();
+    public abstract Text[] getTexts();
 
     //public void fromTag(BlockState state, CompoundTag tag)
-    @Inject(method = "fromTag(Lnet/minecraft/block/BlockState;Lnet/minecraft/nbt/CompoundTag;)V", at = @At("RETURN"))
-    void handleUpdate(BlockState state, CompoundTag tag, CallbackInfo info) {
+    @Inject(method = "readNbt", at = @At("RETURN"))
+    void handleUpdate(NbtCompound nbt, CallbackInfo ci) {
         SignUpdateCallback.EVENT.invoker().update((SignBlockEntity) (Object) this);
     }
 }

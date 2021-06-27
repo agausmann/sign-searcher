@@ -1,7 +1,7 @@
 {
   "required": false,
   "minVersion": "0.8",
-  "package": "ninja.tokumei.signsearcher.mixin.sodium",
+  "package": "dev.gaussian.signsearcher.mixin.sodium",
   "compatibilityLevel": "JAVA_8",
   "mixins": [],
   "client": [

@@ -1,4 +1,4 @@
-package ninja.tokumei.signsearcher.ext;
+package dev.gaussian.signsearcher.ext;
 
 public interface BlockEntityExt {
     boolean isGlowing();

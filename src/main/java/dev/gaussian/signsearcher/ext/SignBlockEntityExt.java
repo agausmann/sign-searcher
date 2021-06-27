@@ -1,7 +1,7 @@
-package ninja.tokumei.signsearcher.ext;
+package dev.gaussian.signsearcher.ext;
 
 import net.minecraft.text.Text;
 
 public interface SignBlockEntityExt {
-    Text[] getText();
+    Text[] getTexts();
 }
