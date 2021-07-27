@@ -27,9 +27,11 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
 	// Depend on sodium for compatibility mixins
-	modCompileOnly "com.github.jellysquid3:sodium-fabric:${project.sodium_version}"
-	//TODO sodium hasn't updated to 1.17 yet
+	//TODO sodium isn't published to any maven repo yet https://jitpack.io/#jellysquid3/sodium-fabric/
+//	modCompileOnly "com.github.jellysquid3:sodium-fabric:${project.sodium_version}"
 //	modRuntime "com.github.jellysquid3:sodium-fabric:${project.sodium_version}"
+	modCompileOnly(files("libs/sodium-fabric-mc1.17.1-0.3.0+build.5.jar"))
+	modRuntime(files("libs/sodium-fabric-mc1.17.1-0.3.0+build.5.jar"))
 
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
 	// You may need to force-disable transitiveness on them.
