@@ -1,3 +1,5 @@
+**Due to life changes, I am no longer working on this. Feel free to [browse the forks](https://github.com/agausmann/sign-searcher/forks), or fork it yourself!**
+
 # Sign Searcher
 
 Sign Searcher is designed to help you find signs that match a given query text.
